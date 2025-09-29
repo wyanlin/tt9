@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import io.github.sspanak.tt9.languages.LanguageCollection;
@@ -37,10 +38,13 @@ class SettingsInput extends SettingsHacks {
 
 
 	public Set<String> getEnabledLanguagesIdsAsStrings() {
-		Set<String> defaultLanguages =  new HashSet<>(Collections.singletonList(
-			String.valueOf(LanguageCollection.getDefault().getId())
-		));
-
+		Set<String> defaultLanguages = new HashSet<>();
+		defaultLanguages.add(String.valueOf(LanguageCollection.getDefault().getId()));
+		defaultLanguages.add(String.valueOf(LanguageCollection.getByLanguageCode(Locale.ENGLISH.getLanguage()).getId()));
+//		Set<String> defaultLanguages =  new HashSet<>(Collections.singletonList(
+//			String.valueOf(LanguageCollection.getDefault().getId())
+//		));
+		Logger.d(LOG_TAG, "Default languages: " + defaultLanguages);
 		return new HashSet<>(prefs.getStringSet("pref_languages", defaultLanguages));
 	}
 

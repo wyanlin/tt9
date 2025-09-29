@@ -11,9 +11,11 @@ import java.util.ArrayList;
 import io.github.sspanak.tt9.languages.Language;
 import io.github.sspanak.tt9.languages.LanguageKind;
 import io.github.sspanak.tt9.ui.tray.SuggestionsBar;
+import io.github.sspanak.tt9.util.Logger;
 import io.github.sspanak.tt9.util.chars.Characters;
 
 class SettingsPunctuation extends SettingsInput {
+	private static final String TAG = "SettingsPunctuation";
 	private final static String CHARS_1_PREFIX = "punctuation_order_key_1_initial_";
 	public final static String CHARS_GROUP_1 = "punctuation_order_key_1_group";
 	public final static String CHARS_AFTER_GROUP_1 = "punctuation_order_key_1_after_group";
@@ -32,6 +34,7 @@ class SettingsPunctuation extends SettingsInput {
 
 
 	public void setDefaultCharOrder(@NonNull Language language, boolean overwrite) {
+		Logger.d(TAG, "setDefaultCharOrder language=" + language + " overwrite=" + overwrite);
 		if (overwrite) {
 			setIncludeNewlineInChars0(language, true);
 			setIncludeTabInChars0(language, true);
@@ -39,11 +42,14 @@ class SettingsPunctuation extends SettingsInput {
 
 		if (overwrite || noDefault0Chars(language)) {
 			String chars = new String(FORBIDDEN_CHARS_0) + String.join("", language.getKeyCharacters(0));
+			Logger.d(TAG, "setDefaultCharOrder chars=" + chars);
 			chars = chars.replace(" ", Characters.getSpace(language));
 			final int splitPosition = 7;
-			saveChars0(language, String.join("", chars.substring(0, splitPosition)));
-			saveCharsExtra(language, CHARS_GROUP_0, String.join("", Characters.getCurrencies(language)));
-			saveCharsExtra(language, CHARS_AFTER_GROUP_0, chars.substring(splitPosition));
+			if (chars.length() >= splitPosition) {
+				saveChars0(language, String.join("", chars.substring(0, splitPosition)));
+				saveCharsExtra(language, CHARS_GROUP_0, String.join("", Characters.getCurrencies(language)));
+				saveCharsExtra(language, CHARS_AFTER_GROUP_0, chars.substring(splitPosition));
+			}
 		}
 
 		if (overwrite || noDefault1Chars(language)) {

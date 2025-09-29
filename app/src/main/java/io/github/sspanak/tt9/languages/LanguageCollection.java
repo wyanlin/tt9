@@ -1,6 +1,7 @@
 package io.github.sspanak.tt9.languages;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +15,7 @@ import io.github.sspanak.tt9.util.Logger;
 import io.github.sspanak.tt9.util.sys.SystemSettings;
 
 public class LanguageCollection {
+	private static final String TAG = LanguageCollection.class.getSimpleName();
 	private static LanguageCollection self;
 
 	private final HashMap<Integer, NaturalLanguage> languages = new HashMap<>();
@@ -65,6 +67,8 @@ public class LanguageCollection {
 	@Nullable
 	public static NaturalLanguage getByLanguageCode(String languageCode) {
 		for (NaturalLanguage lang : self.languages.values()) {
+			Logger.d(TAG, "getByLanguageCode new Locale(languageCode).getLanguage(): "
+				+ new Locale(languageCode).getLanguage() + " lang.getLocale().getLanguage(): " + lang.getLocale().getLanguage());
 			if (lang.getLocale().getLanguage().equals(new Locale(languageCode).getLanguage())) {
 				return lang;
 			}
