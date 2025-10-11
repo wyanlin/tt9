@@ -40,7 +40,7 @@ class SettingsInput extends SettingsHacks {
 	public Set<String> getEnabledLanguagesIdsAsStrings() {
 		Set<String> defaultLanguages = new HashSet<>();
 		defaultLanguages.add(String.valueOf(LanguageCollection.getDefault().getId()));
-		defaultLanguages.add(String.valueOf(LanguageCollection.getByLanguageCode(Locale.ENGLISH.getLanguage()).getId()));
+		defaultLanguages.add(String.valueOf(LanguageCollection.getByLocale(Locale.ENGLISH.getLanguage()).getId()));
 //		Set<String> defaultLanguages =  new HashSet<>(Collections.singletonList(
 //			String.valueOf(LanguageCollection.getDefault().getId())
 //		));
