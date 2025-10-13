@@ -1,0 +1,80 @@
+package com.link.tt9.ui.main.keys;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.ViewParent;
+import android.widget.RelativeLayout;
+
+import com.link.tt9.R;
+import com.link.tt9.preferences.settings.SettingsStore;
+import com.link.tt9.util.chars.Characters;
+
+abstract public class SoftKeyPunctuation extends BaseSoftKeyWithIcons {
+	public SoftKeyPunctuation(Context context) { super(context); }
+	public SoftKeyPunctuation(Context context, AttributeSet attrs) { super(context, attrs); }
+	public SoftKeyPunctuation(Context context, AttributeSet attrs, int defStyleAttr) { super(context, attrs, defStyleAttr); }
+
+
+	abstract protected String getKeyChar();
+
+
+	protected boolean isTextEditingOn() {
+		return tt9 != null && tt9.isTextEditingActive();
+	}
+
+
+	protected boolean shouldHide() {
+		final boolean isLongSpaceKey = getId() == R.id.soft_key_punctuation_201 || getId() == R.id.soft_key_punctuation_202;
+		final boolean isShapeLongSpace = tt9 != null && tt9.getSettings().isNumpadShapeLongSpace();
+		final boolean isInputModeNumeric = tt9 != null && tt9.isInputModeNumeric();
+		final boolean isFnPanelOn = tt9 != null && tt9.isFnPanelVisible();
+
+		if (isInputModeNumeric || hasLettersOnAllKeys() || isFnPanelOn) {
+			return isLongSpaceKey;
+		}
+
+		return isShapeLongSpace != isLongSpaceKey;
+	}
+
+
+	@Override
+	protected boolean handleRelease() {
+		return tt9 != null && tt9.onText(getKeyChar(), false);
+	}
+
+
+	@Override
+	protected String getTitle() {
+		String keyChar = getKeyChar();
+		return switch (keyChar) {
+			case "*" -> "✱";
+			case Characters.ZH_QUESTION_MARK -> "?";
+			case Characters.ZH_EXCLAMATION_MARK -> "!";
+			default -> keyChar;
+		};
+	}
+
+
+	@Override
+	public void setHeight(int height) {
+		if (tt9 != null && tt9.getSettings().isMainLayoutNumpad() && tt9.getSettings().isNumpadShapeV()) {
+			height = Math.round(height * SettingsStore.SOFT_KEY_V_SHAPE_RATIO_INNER);
+		}
+
+		super.setHeight(height);
+	}
+
+
+	@Override
+	public void render() {
+		final boolean isHidden = shouldHide();
+		setVisibility(isHidden ? GONE : VISIBLE);
+
+		ViewParent parent = getParent();
+		if (parent instanceof RelativeLayout) {
+			((RelativeLayout) parent).setVisibility(isHidden ? RelativeLayout.GONE : RelativeLayout.VISIBLE);
+		}
+
+		super.render();
+	}
+}

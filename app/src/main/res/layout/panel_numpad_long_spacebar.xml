@@ -5,14 +5,14 @@
 	android:id="@+id/panel_long_spacebar">
 
 	<RelativeLayout style="@style/TTheme.Numpad.Key.ShortPunctuation.Overlay.Wrapper">
-		<io.github.sspanak.tt9.ui.main.keys.SoftKeyPunctuationLeftPremium
+		<com.link.tt9.ui.main.keys.SoftKeyPunctuationLeftPremium
 			style="@style/TTheme.Numpad.Key.Number"
 			android:id="@+id/soft_key_punctuation_201" />
 		<include layout="@layout/key_overlay_icons" />
 	</RelativeLayout>
 
 	<RelativeLayout style="@style/TTheme.Numpad.Key.LongSpace.Overlay.Wrapper">
-		<io.github.sspanak.tt9.ui.main.keys.SoftKeyNumber0Long
+		<com.link.tt9.ui.main.keys.SoftKeyNumber0Long
 			style="@style/TTheme.Numpad.Key.Number"
 			android:id="@+id/soft_key_200" />
 		<include layout="@layout/key_overlay_icons" />
@@ -21,7 +21,7 @@
 	</RelativeLayout>
 
 	<RelativeLayout style="@style/TTheme.Numpad.Key.ShortPunctuation.Overlay.Wrapper">
-		<io.github.sspanak.tt9.ui.main.keys.SoftKeyPunctuationRightPremium
+		<com.link.tt9.ui.main.keys.SoftKeyPunctuationRightPremium
 			style="@style/TTheme.Numpad.Key.Number"
 			android:id="@+id/soft_key_punctuation_202" />
 		<include layout="@layout/key_overlay_icons" />

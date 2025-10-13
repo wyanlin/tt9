@@ -68,7 +68,7 @@ _If you are installing over a previously installed version, you may have to unin
 ### Enable
 
 ```bash
-adb shell ime enable io.github.sspanak.tt9/.ime.TraditionalT9
+adb shell ime enable com.link.tt9/.ime.TraditionalT9
 ```
 
 _That's it! TT9 should appear the next you start typing._
@@ -76,5 +76,5 @@ _That's it! TT9 should appear the next you start typing._
 ### Uninstall
 
 ```bash
-adb shell pm uninstall io.github.sspanak.tt9
+adb shell pm uninstall com.link.tt9
 ```

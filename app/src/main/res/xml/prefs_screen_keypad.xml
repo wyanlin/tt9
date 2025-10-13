@@ -5,17 +5,17 @@
 
 	<PreferenceCategory android:title="@string/pref_category_typing">
 		<Preference
-			android:fragment="io.github.sspanak.tt9.preferences.screens.modeAbc.ModeAbcScreen"
+			android:fragment="com.link.tt9.preferences.screens.modeAbc.ModeAbcScreen"
 			android:key="screen_abc_mode"
 			android:title="@string/pref_category_abc_mode" />
 
 		<Preference
-			android:fragment="io.github.sspanak.tt9.preferences.screens.modePredictive.ModePredictiveScreen"
+			android:fragment="com.link.tt9.preferences.screens.modePredictive.ModePredictiveScreen"
 			android:key="screen_predictive_mode"
 			android:title="@string/pref_category_predictive_mode" />
 
 		<Preference
-			android:fragment="io.github.sspanak.tt9.preferences.screens.punctuation.PunctuationScreen"
+			android:fragment="com.link.tt9.preferences.screens.punctuation.PunctuationScreen"
 			android:key="screen_punctuation"
 			android:title="@string/pref_category_punctuation_order" />
 
@@ -35,7 +35,7 @@
 
 	<PreferenceCategory android:title="@string/pref_category_keypad_hardware">
 		<Preference
-			android:fragment="io.github.sspanak.tt9.preferences.screens.hotkeys.HotkeysScreen"
+			android:fragment="com.link.tt9.preferences.screens.hotkeys.HotkeysScreen"
 			android:key="screen_hotkeys"
 			android:title="@string/pref_category_function_keys" />
 

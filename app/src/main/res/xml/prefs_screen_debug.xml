@@ -7,7 +7,7 @@
 		app:title="Device Info" />
 
 	<Preference
-		android:fragment="io.github.sspanak.tt9.preferences.screens.UsageStatsScreen"
+		android:fragment="com.link.tt9.preferences.screens.UsageStatsScreen"
 		android:key="pref_slow_queries"
 		android:title="@string/pref_category_usage_stats" />
 
@@ -40,8 +40,8 @@
 			app:title="Recent Log Messages...">
 			<intent
 				android:action="android.intent.action.VIEW"
-				android:targetPackage="io.github.sspanak.tt9"
-				android:targetClass="io.github.sspanak.tt9.preferences.LogsActivity" />
+				android:targetPackage="com.link.tt9"
+				android:targetClass="com.link.tt9.preferences.LogsActivity" />
 		</Preference>
 	</PreferenceCategory>
 

@@ -1,0 +1,21 @@
+package com.link.tt9.ime.modes;
+
+import androidx.annotation.NonNull;
+
+import com.link.tt9.hacks.InputType;
+import com.link.tt9.preferences.settings.SettingsStore;
+
+// see: InputType.isSpecialNumeric()
+class ModePassthrough extends InputMode {
+	protected ModePassthrough(SettingsStore settings, InputType inputType) {
+		super(settings, inputType);
+		reset();
+	}
+
+	@Override public int getId() { return MODE_PASSTHROUGH; }
+	@Override public int getSequenceLength() { return 0; }
+	@Override @NonNull public String toString() { return "--"; }
+
+	@Override public boolean onNumber(int number, boolean hold, int repeat) { return false; }
+	@Override public boolean shouldIgnoreText(String text) { return true; }
+}

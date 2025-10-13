@@ -5,54 +5,59 @@
 
 	<Preference
 		app:key="screen_help"
+		app:isPreferenceVisible="false"
 		app:title="@string/pref_help">
 		<intent
 			android:action="android.intent.action.VIEW"
-			android:targetPackage="io.github.sspanak.tt9"
-			android:targetClass="io.github.sspanak.tt9.preferences.HelpActivity" />
+			android:targetPackage="com.link.tt9"
+			android:targetClass="com.link.tt9.preferences.HelpActivity" />
 	</Preference>
 
 	<Preference
-		app:fragment="io.github.sspanak.tt9.preferences.AppearanceScreen"
+		app:fragment="com.link.tt9.preferences.AppearanceScreen"
 		app:key="screen_appearance"
+		app:isPreferenceVisible="false"
 		app:title="@string/pref_category_appearance" />
 
 	<Preference
-		app:fragment="io.github.sspanak.tt9.preferences.LanguagesScreen"
+		app:fragment="com.link.tt9.preferences.LanguagesScreen"
 		app:key="screen_languages"
 		app:title="@string/pref_choose_languages" />
 
 	<Preference
-		app:fragment="io.github.sspanak.tt9.preferences.KeyPadScreen"
+		app:fragment="com.link.tt9.preferences.KeyPadScreen"
 		app:key="screen_keypad"
 		app:title="@string/pref_category_keypad" />
 
 	<Preference
-		app:fragment="io.github.sspanak.tt9.preferences.SetupScreen"
+		app:fragment="com.link.tt9.preferences.SetupScreen"
 		app:key="screen_setup"
 		app:title="@string/pref_category_setup" />
 
 	<PreferenceCategory
 		app:title="@string/pref_category_about"
-		app:singleLineTitle="true">
+		app:singleLineTitle="true"
+		app:isPreferenceVisible="false">
 
-		<io.github.sspanak.tt9.preferences.screens.main.ProfitPreference
+		<com.link.tt9.preferences.screens.main.ProfitPreference
 			app:key="screen_profit"
 			app:isPreferenceVisible="false" />
 
 		<Preference
 			app:key="screen_privacy_policy"
 			app:title="@string/pref_privacy_policy"
-			app:summary="@string/english_only">
+			app:summary="@string/english_only"
+			app:isPreferenceVisible="false">
 			<intent
 				android:action="android.intent.action.VIEW"
-				android:targetPackage="io.github.sspanak.tt9"
-				android:targetClass="io.github.sspanak.tt9.preferences.PrivacyPolicyActivity" />
+				android:targetPackage="com.link.tt9"
+				android:targetClass="com.link.tt9.preferences.PrivacyPolicyActivity" />
 		</Preference>
 
 		<Preference
 			app:key="version_info"
-			app:title="@string/app_name" />
+			app:title="@string/app_name"
+			app:isPreferenceVisible="false"/>
 
 	</PreferenceCategory>
 

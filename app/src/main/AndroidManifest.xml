@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:tools="http://schemas.android.com/tools"
-	android:versionCode="1289"
+	android:versionCode="1290"
 	android:versionName="0.0"
 	xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -21,8 +21,9 @@
 		android:label="@string/app_name"
 		android:theme="@style/TTheme"
 		android:supportsRtl="true">
-
-		<service android:name="io.github.sspanak.tt9.ime.TraditionalT9" android:permission="android.permission.BIND_INPUT_METHOD"
+		<uses-library android:name="androidx.window.extensions" android:required="false" /> <!-- allows using window extensions on Android >= 11 -->
+		<uses-library android:name="androidx.window.sidecar" android:required="false" /> <!-- allows using window sidecar on Android >= 11 -->
+		<service android:name="com.link.tt9.ime.TraditionalT9" android:permission="android.permission.BIND_INPUT_METHOD"
 			android:exported="true">
 			<intent-filter>
 				<action android:name="android.view.InputMethod"/>
@@ -32,7 +33,7 @@
 
 		<activity
 			android:label="@string/app_name_short"
-			android:name="io.github.sspanak.tt9.preferences.PreferencesActivity"
+			android:name="com.link.tt9.preferences.PreferencesActivity"
 			android:exported="true"
 			android:theme="@style/TTheme.Preferences">
 			<intent-filter>
@@ -44,12 +45,12 @@
 		<activity
 			android:excludeFromRecents="true"
 			android:label=""
-			android:name="io.github.sspanak.tt9.ui.dialogs.AutoUpdateMonologActivity"
+			android:name="com.link.tt9.ui.dialogs.AutoUpdateMonologActivity"
 			android:theme="@style/TTheme.AddWord" />
 
 		<activity
 			android:label="@string/pref_help"
-			android:name="io.github.sspanak.tt9.preferences.HelpActivity"
+			android:name="com.link.tt9.preferences.HelpActivity"
 			android:exported="true"
 			android:theme="@style/TTheme.Preferences">
 			<intent-filter>
@@ -60,7 +61,7 @@
 
 		<activity
 			android:label="Log Messages"
-			android:name="io.github.sspanak.tt9.preferences.LogsActivity"
+			android:name="com.link.tt9.preferences.LogsActivity"
 			android:exported="true"
 			android:theme="@style/TTheme.Preferences">
 			<intent-filter>
@@ -71,7 +72,7 @@
 
 		<activity
 			android:label="@string/pref_privacy_policy"
-			android:name="io.github.sspanak.tt9.preferences.PrivacyPolicyActivity"
+			android:name="com.link.tt9.preferences.PrivacyPolicyActivity"
 			android:exported="true"
 			android:theme="@style/TTheme.Preferences">
 			<intent-filter>
@@ -83,7 +84,7 @@
 		<activity
 			android:excludeFromRecents="true"
 			android:label=""
-			android:name="io.github.sspanak.tt9.ui.dialogs.RequestPermissionDialog"
+			android:name="com.link.tt9.ui.dialogs.RequestPermissionDialog"
 			android:theme="@style/TTheme.AddWord" />
 	</application>
 </manifest>
