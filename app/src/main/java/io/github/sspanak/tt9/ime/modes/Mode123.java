@@ -1,5 +1,7 @@
 package io.github.sspanak.tt9.ime.modes;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -8,10 +10,12 @@ import io.github.sspanak.tt9.hacks.InputType;
 import io.github.sspanak.tt9.languages.Language;
 import io.github.sspanak.tt9.languages.LanguageCollection;
 import io.github.sspanak.tt9.preferences.settings.SettingsStore;
+import io.github.sspanak.tt9.util.Logger;
 import io.github.sspanak.tt9.util.TextTools;
 import io.github.sspanak.tt9.util.chars.Characters;
 
 class Mode123 extends ModePassthrough {
+	private static final String TAG = "Mode123";
 	@Override public int getId() { return MODE_123; }
 	@Override @NonNull public String toString() { return "123"; }
 
@@ -79,7 +83,7 @@ class Mode123 extends ModePassthrough {
 				ordered.add(character);
 			}
 		}
-
+		Logger.d(TAG, "orderCharsForNumericField: ordered: " + ordered);
 		return ordered;
 	}
 
@@ -118,15 +122,20 @@ class Mode123 extends ModePassthrough {
 	 * 	at least in Japan. More info and discussion: <a href="https://github.com/sspanak/tt9/issues/241">issue 241 on Github</a>.
 	 */
 	@Override public boolean shouldIgnoreText(String text) {
-		return
-			text == null
+		Logger.d(TAG, "shouldIgnoreText: " + text);
+		if (text != null && text.equals("*")) {
+			return false;
+		}
+		boolean res = text == null
 			|| text.length() != 1
 			|| text.charAt(0) == 9
 			|| !(
-				(text.charAt(0) > 31 && text.charAt(0) < 65)
+			(text.charAt(0) > 31 && text.charAt(0) < 65)
 				|| (text.charAt(0) > 90 && text.charAt(0) < 97)
 				|| (text.charAt(0) > 122 && text.charAt(0) < 127)
-			);
+		);
+		Logger.d(TAG, "shouldIgnoreText: " + text + " -> " + res);
+		return res;
 	}
 
 

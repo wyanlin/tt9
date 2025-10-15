@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 	<SwitchPreferenceCompat
-		android:defaultValue="true"
+		android:defaultValue="false"
 		android:key="pref_predictive_mode"
 		android:title="@string/pref_category_predictive_mode" />
 
 	<SwitchPreferenceCompat
-		android:defaultValue="true"
+		android:defaultValue="false"
 		android:dependency="pref_predictive_mode"
 		android:key="auto_space"
 		android:summary="@string/pref_auto_space_summary"
 		android:title="@string/pref_auto_space" />
 
 	<SwitchPreferenceCompat
-		android:defaultValue="true"
+		android:defaultValue="false"
 		android:dependency="pref_predictive_mode"
 		android:key="auto_text_case"
 		android:summary="@string/pref_auto_text_case_summary"
@@ -27,14 +27,14 @@
 		android:title="@string/pref_auto_capitals_after_newline" />
 
 	<SwitchPreferenceCompat
-		android:defaultValue="true"
+		android:defaultValue="false"
 		android:dependency="pref_predictive_mode"
 		android:key="pref_predict_word_pairs"
 		android:summary="@string/pref_predict_word_pairs_summary"
 		android:title="@string/pref_predict_word_pairs" />
 
 	<SwitchPreferenceCompat
-		android:defaultValue="true"
+		android:defaultValue="false"
 		android:dependency="pref_predictive_mode"
 		android:key="backspace_recomposing"
 		android:summary="@string/pref_backspace_recomposing_summary"

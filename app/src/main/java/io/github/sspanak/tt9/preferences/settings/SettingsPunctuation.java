@@ -45,11 +45,11 @@ class SettingsPunctuation extends SettingsInput {
 			Logger.d(TAG, "setDefaultCharOrder chars=" + chars);
 			chars = chars.replace(" ", Characters.getSpace(language));
 			final int splitPosition = 7;
-			if (chars.length() >= splitPosition) {
+			//if (chars.length() >= splitPosition) {
 				saveChars0(language, String.join("", chars.substring(0, splitPosition)));
 				saveCharsExtra(language, CHARS_GROUP_0, String.join("", Characters.getCurrencies(language)));
 				saveCharsExtra(language, CHARS_AFTER_GROUP_0, chars.substring(splitPosition));
-			}
+			//}
 		}
 
 		if (overwrite || noDefault1Chars(language)) {

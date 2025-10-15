@@ -9,8 +9,8 @@ class SettingsTyping extends SettingsPunctuation {
 		int time = getStringifiedInt("pref_abc_auto_accept_time", 800);
 		return time > 0 ? time + getKeyPadDebounceTime() : time;
 	}
-	public boolean getAutoSpace() { return prefs.getBoolean("auto_space", true); }
-	public boolean getAutoTextCase() { return prefs.getBoolean("auto_text_case", true); }
+	public boolean getAutoSpace() { return prefs.getBoolean("auto_space", false); }
+	public boolean getAutoTextCase() { return prefs.getBoolean("auto_text_case", false); }
 	public boolean getAutoCapitalsAfterNewline() {
 		return getAutoTextCase() && prefs.getBoolean("auto_capitals_after_newline", false);
 	}
@@ -20,7 +20,7 @@ class SettingsTyping extends SettingsPunctuation {
 	}
 
 	public boolean getBackspaceRecomposing() {
-		return prefs.getBoolean("backspace_recomposing", true);
+		return prefs.getBoolean("backspace_recomposing", false);
 	}
 
 	public String getDoubleZeroChar() {
@@ -31,11 +31,11 @@ class SettingsTyping extends SettingsPunctuation {
 	}
 
 	public boolean getPredictiveMode() {
-		return prefs.getBoolean("pref_predictive_mode", true);
+		return prefs.getBoolean("pref_predictive_mode", false);
 	}
 
 	public boolean getPredictWordPairs() {
-		return prefs.getBoolean("pref_predict_word_pairs", true);
+		return prefs.getBoolean("pref_predict_word_pairs", false);
 	}
 
 	public boolean getUpsideDownKeys() { return prefs.getBoolean("pref_upside_down_keys", false); }

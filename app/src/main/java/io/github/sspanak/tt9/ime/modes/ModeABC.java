@@ -10,6 +10,7 @@ import io.github.sspanak.tt9.languages.Language;
 import io.github.sspanak.tt9.languages.LanguageCollection;
 import io.github.sspanak.tt9.languages.LanguageKind;
 import io.github.sspanak.tt9.preferences.settings.SettingsStore;
+import io.github.sspanak.tt9.util.Logger;
 import io.github.sspanak.tt9.util.chars.Characters;
 
 class ModeABC extends InputMode {
@@ -59,6 +60,7 @@ class ModeABC extends InputMode {
 
 	@Override
 	protected String adjustSuggestionTextCase(String word, int newTextCase) {
+		Logger.d("ModeABC", "adjustSuggestionTextCase word: " + word + " newTextCase: " + newTextCase);
 		return newTextCase == CASE_UPPER ? word.toUpperCase(language.getLocale()) : word.toLowerCase(language.getLocale());
 	}
 
@@ -120,12 +122,13 @@ class ModeABC extends InputMode {
 	@Override
 	public String toString() {
 		String modeString = language.getAbcString();
-
+		Logger.d("ModeABC", "toString modeString: " + modeString + " textCase: " + textCase);
 		// There are many languages written using the same alphabet, so if the user has
 		// enabled multiple ones, make it clear which one is it, by appending the unique
 		// country or language code to "ABC" or "АБВ".
 		if (LanguageKind.isArabicBased(language) || LanguageKind.isCyrillic(language) || LanguageKind.isHebrew(language) || LanguageKind.isLatinBased(language)) {
 			modeString += " / " + language.getCode();
+			Logger.d("ModeABC", "toString will append,modeString: " + modeString);
 		}
 
 		return (textCase == CASE_LOWER) ? modeString.toLowerCase(language.getLocale()) : modeString.toUpperCase(language.getLocale());

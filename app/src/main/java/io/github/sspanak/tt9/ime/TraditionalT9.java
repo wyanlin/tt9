@@ -9,12 +9,16 @@ import android.view.inputmethod.EditorInfo;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
+
 import io.github.sspanak.tt9.db.DataStore;
 import io.github.sspanak.tt9.db.words.DictionaryLoader;
 import io.github.sspanak.tt9.hacks.AppHacks;
 import io.github.sspanak.tt9.hacks.InputType;
 import io.github.sspanak.tt9.ime.modes.InputModeKind;
+import io.github.sspanak.tt9.languages.Language;
 import io.github.sspanak.tt9.languages.LanguageCollection;
+import io.github.sspanak.tt9.languages.NaturalLanguage;
 import io.github.sspanak.tt9.preferences.settings.SettingsStore;
 import io.github.sspanak.tt9.ui.UI;
 import io.github.sspanak.tt9.ui.dialogs.RequestPermissionDialog;
@@ -166,7 +170,12 @@ public class TraditionalT9 extends PremiumHandler {
 		}
 
 		if (!newInputType.isUs()) {
-			DictionaryLoader.autoLoad(this, mLanguage);
+//			DictionaryLoader.autoLoad(this, mLanguage);
+			ArrayList<Language> languages = new ArrayList<>();
+			for (int langId : mEnabledLanguages) {
+				languages.add(LanguageCollection.getLanguage(langId));
+			}
+			DictionaryLoader.autoLoadMore(this, languages);
 		}
 
 		askForNotifications();

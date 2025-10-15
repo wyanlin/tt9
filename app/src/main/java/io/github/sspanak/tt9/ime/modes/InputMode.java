@@ -206,6 +206,9 @@ abstract public class InputMode {
 	 * additional logic to determine the next valid text case.
 	 */
 	public boolean nextTextCase(@Nullable String currentWord, int displayTextCase) {
+		Logger.d("InputMode", "nextTextCase: currentWord=" + currentWord + ", displayTextCase="
+			+ displayTextCase + ", textCase=" + textCase + " hasUpperCase=" + language.hasUpperCase()
+			+ " allowedTextCases=" + allowedTextCases);
 		if (!language.hasUpperCase()) {
 			return false;
 		}

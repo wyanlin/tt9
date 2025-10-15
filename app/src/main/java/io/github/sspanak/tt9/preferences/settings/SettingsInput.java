@@ -39,6 +39,7 @@ class SettingsInput extends SettingsHacks {
 
 	public Set<String> getEnabledLanguagesIdsAsStrings() {
 		Set<String> defaultLanguages = new HashSet<>();
+		// set chinese pinyin and english as default languages
 		defaultLanguages.add(String.valueOf(LanguageCollection.getDefault().getId()));
 		defaultLanguages.add(String.valueOf(LanguageCollection.getByLanguageCode(Locale.ENGLISH.getLanguage()).getId()));
 //		Set<String> defaultLanguages =  new HashSet<>(Collections.singletonList(

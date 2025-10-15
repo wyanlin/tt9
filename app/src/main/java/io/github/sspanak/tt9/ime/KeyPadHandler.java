@@ -5,6 +5,7 @@ import android.view.KeyEvent;
 import io.github.sspanak.tt9.ime.helpers.Key;
 import io.github.sspanak.tt9.preferences.screens.debug.ItemInputHandlingMode;
 import io.github.sspanak.tt9.preferences.settings.SettingsStore;
+import io.github.sspanak.tt9.util.Logger;
 import io.github.sspanak.tt9.util.Timer;
 
 
@@ -53,10 +54,11 @@ abstract class KeyPadHandler extends UiHandler {
 		}
 
 		if (shouldBeOff()) {
+			Logger.d("KeyPadHandler", "shouldBeOff() returned true, ignoring key: " + keyCode);
 			return false;
 		}
 
-//		Logger.d("onKeyDown", "Key: " + event + " repeat?: " + event.getRepeatCount() + " long-time: " + event.isLongPress());
+		Logger.d("KeyPadHandler", "onKeyDown: Key: " + keyCode + " repeat?: " + event.getRepeatCount() + " long-time: " + event.isLongPress());
 
 		// "backspace" key must repeat its function when held down, so we handle it in a special way
 		if (Key.isBackspace(settings, keyCode)) {
@@ -85,11 +87,16 @@ abstract class KeyPadHandler extends UiHandler {
 			Key.setHandled(KeyEvent.KEYCODE_BACK, false);
 		}
 
+		boolean isPoundOrStar = Key.isPoundOrStar(keyCode);
+		if (isPoundOrStar) {
+			Logger.d("KeyPadHandler", "Processing * or # key: " + keyCode + " unicode: " + (char) event.getUnicodeChar());
+		}
+
 		return
 			Key.setHandled(KeyEvent.KEYCODE_ENTER, Key.isOK(keyCode) && onOK())
 			|| handleHotkey(keyCode, true, false, true) // hold a hotkey, handled in onKeyLongPress())
 			|| handleHotkey(keyCode, false, keyRepeatCounter + 1 > 0, true) // press a hotkey, handled in onKeyUp()
-			|| Key.isPoundOrStar(keyCode) && onText(String.valueOf((char) event.getUnicodeChar()), true)
+			|| isPoundOrStar && onText(String.valueOf((char) event.getUnicodeChar()), true)
 			|| super.onKeyDown(keyCode, event); // let the system handle the keys we don't care about (usually, the touch "buttons")
 	}
 
@@ -177,10 +184,15 @@ abstract class KeyPadHandler extends UiHandler {
 			return Key.isHandledInSuper(keyCode) ? super.onKeyUp(keyCode, event) : Key.isHandled(keyCode);
 		}
 
+		boolean isPoundOrStarUp = Key.isPoundOrStar(keyCode);
+		if (isPoundOrStarUp) {
+			Logger.d("KeyPadHandler", "Processing * or # key in onKeyUp: " + keyCode + " unicode: " + (char) event.getUnicodeChar());
+		}
+
 		return
 			(Key.isOK(keyCode) && Key.isHandled(KeyEvent.KEYCODE_ENTER))
 			|| handleHotkey(keyCode, false, keyRepeatCounter > 0, false)
-			|| Key.isPoundOrStar(keyCode) && onText(String.valueOf((char) event.getUnicodeChar()), false)
+			|| isPoundOrStarUp && onText(String.valueOf((char) event.getUnicodeChar()), false)
 			|| super.onKeyUp(keyCode, event); // let the system handle the keys we don't care about (usually, the touch "buttons")
 	}
 

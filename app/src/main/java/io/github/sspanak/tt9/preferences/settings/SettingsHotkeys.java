@@ -105,8 +105,8 @@ public class SettingsHotkeys extends SettingsVirtualNumpad {
 			FUNC_NEXT_SUGGESTION,
 			String.valueOf(KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_DPAD_RIGHT) ? KeyEvent.KEYCODE_DPAD_RIGHT : KeyEvent.KEYCODE_UNKNOWN)
 		);
-
-		prefsEditor.putString(FUNC_COMMAND_PALETTE, String.valueOf(-KeyEvent.KEYCODE_STAR)); // negative means "hold"
+		// stop display palette by key_star
+		// prefsEditor.putString(FUNC_COMMAND_PALETTE, String.valueOf(-KeyEvent.KEYCODE_STAR)); // negative means "hold"
 		prefsEditor.putString(FUNC_NEXT_INPUT_MODE, String.valueOf(KeyEvent.KEYCODE_POUND));
 		prefsEditor.putString(FUNC_NEXT_LANGUAGE, String.valueOf(-KeyEvent.KEYCODE_POUND)); // negative means "hold"
 		prefsEditor.putString(FUNC_SHIFT, String.valueOf(KeyEvent.KEYCODE_STAR));

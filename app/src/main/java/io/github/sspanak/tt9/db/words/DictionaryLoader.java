@@ -5,6 +5,7 @@ import android.content.res.AssetManager;
 import android.inputmethodservice.InputMethodService;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 import io.github.sspanak.tt9.db.DataStore;
@@ -88,6 +90,7 @@ public class DictionaryLoader {
 
 
 	private void loadSync(Context context, ArrayList<Language> languages) {
+		Log.d(LOG_TAG, "wyltest loadSync languages = " + languages, new Exception());
 		currentFile = 0;
 		Timer.start(IMPORT_TIMER);
 
@@ -108,11 +111,21 @@ public class DictionaryLoader {
 
 
 	public static void load(Context context, Language language) {
+		Log.d(LOG_TAG, "load language = " + language, new Exception());
 		getInstance(context).load(context, new ArrayList<>() {{ add(language); }});
 	}
 
+	public static void loadMoreLanguages(Context context, List<Language> languageList) {
+		Log.d(LOG_TAG, "loadMoreLanguages languageList = " + languageList, new Exception());
+		getInstance(context).load(context, new ArrayList<>() {
+			{
+				addAll(languageList);
+			}
+		});
+	}
 
 	public static boolean autoLoad(InputMethodService context, Language language) {
+		Log.d(LOG_TAG, "autoLoad language = " + language, new Exception());
 		if (getInstance(context).isRunning()) {
 			return false;
 		}
@@ -143,6 +156,37 @@ public class DictionaryLoader {
 		return true;
 	}
 
+	public static boolean autoLoadMore(InputMethodService context, ArrayList<Language> languageList) {
+		Log.d(LOG_TAG, "autoLoad language = " + languageList, new Exception());
+		if (getInstance(context).isRunning()) {
+			return false;
+		}
+
+		final Long lastUpdateTime = self.lastAutoLoadAttemptTime.get(languageList.get(0).getId());
+		final boolean isItTooSoon = lastUpdateTime != null && System.currentTimeMillis() - lastUpdateTime < SettingsStore.DICTIONARY_AUTO_LOAD_COOLDOWN_TIME;
+		if (isItTooSoon) {
+			return false;
+		}
+
+		DataStore.getLastLanguageUpdateTime(
+			(hash) -> {
+				getInstance(context).lastAutoLoadAttemptTime.put(languageList.get(0).getId(), System.currentTimeMillis());
+
+				final boolean noDictionary = hash == null || hash.isEmpty();
+				final boolean isDictionaryOutdated = noDictionary || !hash.equals(new WordFile(context, languageList.get(0), self.assets).getHash());
+				final boolean noNotifications = !(new SettingsStore(context).getNotificationsApproved());
+
+				if (noDictionary || (isDictionaryOutdated && noNotifications)) {
+					loadMoreLanguages(context, languageList);
+				} else if (isDictionaryOutdated) {
+					new DictionaryUpdateNotification(context, languageList.get(0)).show();
+				}
+			},
+			languageList.get(0)
+		);
+
+		return true;
+	}
 
 	public void stop() {
 		loadThread.interrupt();

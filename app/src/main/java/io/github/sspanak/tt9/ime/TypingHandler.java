@@ -26,6 +26,7 @@ import io.github.sspanak.tt9.languages.LanguageCollection;
 import io.github.sspanak.tt9.languages.LanguageKind;
 import io.github.sspanak.tt9.preferences.settings.SettingsStore;
 import io.github.sspanak.tt9.ui.UI;
+import io.github.sspanak.tt9.util.Logger;
 import io.github.sspanak.tt9.util.Text;
 import io.github.sspanak.tt9.util.chars.Characters;
 
@@ -216,7 +217,9 @@ public abstract class TypingHandler extends KeyPadHandler {
 
 
 	public boolean onText(String text, boolean validateOnly) {
+		Logger.d("TypingHandler", "onText: text: " + text + " validateOnly: " + validateOnly + " mode: " + mInputMode.getClass().getSimpleName());
 		if (mInputMode.shouldIgnoreText(text)) {
+			Logger.d("TypingHandler", "Text ignored by shouldIgnoreText: " + text);
 			return false;
 		}
 
