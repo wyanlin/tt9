@@ -2,7 +2,7 @@ locale: en-IN
 dictionaryFile: hing-utf8.csv
 iconABC: ic_lang_latin
 iconT9: ic_lang_hn
-name: Hinglish
+name: English
 layout:
   - [SPECIAL] # 0
   - [PUNCTUATION] # 1

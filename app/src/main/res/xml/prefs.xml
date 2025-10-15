@@ -5,7 +5,8 @@
 
 	<Preference
 		app:key="screen_help"
-		app:title="@string/pref_help">
+		app:title="@string/pref_help"
+		app:isPreferenceVisible="false">
 		<intent
 			android:action="android.intent.action.VIEW"
 			android:targetPackage="io.github.sspanak.tt9"
@@ -21,7 +22,8 @@
 	<Preference
 		app:fragment="io.github.sspanak.tt9.preferences.LanguagesScreen"
 		app:key="screen_languages"
-		app:title="@string/pref_choose_languages" />
+		app:title="@string/pref_choose_languages"
+		app:isPreferenceVisible="false"/>
 
 	<Preference
 		app:fragment="io.github.sspanak.tt9.preferences.KeyPadScreen"

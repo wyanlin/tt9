@@ -42,7 +42,8 @@ class LocaleCompat {
 			case "ar" -> "ع";
 			case "bg" -> "бг";
 			case "ca", "ga", "sw" -> language;
-			case "en" -> "in".equals(country) ? "hn" : language; // en-IN = Hinglish
+//			case "en" -> "in".equals(country) ? "hn" : language; // en-IN = Hinglish
+			case "en" -> "en";
 			case "fa" -> "ف";
 			case "fi" -> "su";
 			case "el" -> "ελ";

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:orderingFromXml="true">
 
-	<PreferenceCategory android:title="@string/pref_category_typing">
+	<PreferenceCategory android:title="@string/pref_category_typing" app:isPreferenceVisible="false">
 		<Preference
 			android:fragment="io.github.sspanak.tt9.preferences.screens.modeAbc.ModeAbcScreen"
 			android:key="screen_abc_mode"
@@ -12,28 +12,33 @@
 		<Preference
 			android:fragment="io.github.sspanak.tt9.preferences.screens.modePredictive.ModePredictiveScreen"
 			android:key="screen_predictive_mode"
-			android:title="@string/pref_category_predictive_mode" />
+			android:title="@string/pref_category_predictive_mode"
+			app:isPreferenceVisible="false"/>
 
 		<Preference
 			android:fragment="io.github.sspanak.tt9.preferences.screens.punctuation.PunctuationScreen"
 			android:key="screen_punctuation"
-			android:title="@string/pref_category_punctuation_order" />
+			android:title="@string/pref_category_punctuation_order"
+			app:isPreferenceVisible="false"/>
 
 		<SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="backspace_acceleration"
 			android:title="@string/pref_backspace_acceleration"
-			android:summary="@string/pref_backspace_acceleration_summary" />
+			android:summary="@string/pref_backspace_acceleration_summary"
+			app:isPreferenceVisible="false"/>
 	</PreferenceCategory>
 
-	<PreferenceCategory android:title="@string/pref_category_keypad_onscreen" android:key="category_virtual_keys">
+	<PreferenceCategory android:title="@string/pref_category_keypad_onscreen" android:key="category_virtual_keys"
+		app:isPreferenceVisible="false">
 		<SwitchPreferenceCompat
 			android:key="pref_haptic_feedback"
 			android:title="@string/pref_haptic_feedback"
 			android:summary="@string/pref_haptic_feedback_summary"/>
 	</PreferenceCategory>
 
-	<PreferenceCategory android:title="@string/pref_category_keypad_hardware">
+	<PreferenceCategory android:title="@string/pref_category_keypad_hardware"
+		app:isPreferenceVisible="false">
 		<Preference
 			android:fragment="io.github.sspanak.tt9.preferences.screens.hotkeys.HotkeysScreen"
 			android:key="screen_hotkeys"
@@ -50,7 +55,8 @@
 			android:title="@string/pref_upside_down_keys" />
 	</PreferenceCategory>
 
-	<PreferenceCategory android:title="@string/pref_category_hacks">
+	<PreferenceCategory android:title="@string/pref_category_hacks"
+		app:isPreferenceVisible="false">
 		<SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="pref_allow_composing_text"
