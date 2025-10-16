@@ -21,7 +21,6 @@ app/lite/
 app/premium/
 release/
 app/src/full/assets/
-
 # Premium code (it's in a different repo)
 app/src/premium/
 
@@ -42,3 +41,4 @@ t9build.properties
 proguard/
 *.sublime-project
 *.sublime-workspace
+downloads/
